@@ -1,6 +1,6 @@
 import React from 'react'
 
-RenderStatic = ({value, errors}) => {
+const RenderStatic = ({value, errors}) => {
   let text = ''
   if (value && value)
     text = ''+value
