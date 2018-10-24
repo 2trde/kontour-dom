@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 
-import {Form, TextField, CheckField} from 'kontour'
+import {Form, TextField, CheckField, DateTimeField} from 'kontour'
 import 'kontour-dom'
 
 export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: 'Hans',
-      age: 29
+      edit: true,
+      text: 'Hans',
+      intval: 29,
+      floatval: 123.456,
+      boolval: true,
+      dateTime: null
+
     }
   }
   render () {
@@ -21,7 +26,8 @@ export default class App extends Component {
 
 
         <Form value={this.state} edit={this.state.edit} onChange={s => this.setState(s)}>
-          <TextField attr='name' label='Name'/>
+          <TextField attr='text' label='Name'/>
+          <DateTimeField attr='dateTime' />
         </Form>
       </div>
     )

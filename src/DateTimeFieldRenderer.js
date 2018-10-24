@@ -28,6 +28,19 @@ class DateTimeFieldRenderer extends React.Component {
       this.props.onChange(val.format())
   }
 
+  onChangeTime(t) {
+    const timeParts = t.split(':')
+    const hour = parseInt(timeParts[0])
+    const min = parseInt(timeParts[1])
+
+    const dateTime = this.currentMoment()
+    dateTime.hour(hour)
+    dateTime.minute(min)
+
+    if (this.props.onChange)
+      this.props.onChange(dateTime.utc().format())
+  }
+
   currentMoment() {
     return this.props.value ? moment(this.props.value, inputFormat) : moment()
   }

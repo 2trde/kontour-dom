@@ -1,6 +1,6 @@
 {
   "name": "kontour-dom",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "DOM implementation for kontour",
   "author": "",
   "license": "MIT",
@@ -29,7 +29,7 @@
     "react-overlays": "^0.8.3"
   },
   "devDependencies": {
-    "kontour": "^0.1.0",
+    "kontour": "^0.1.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.5",
     "babel-plugin-external-helpers": "^6.22.0",
