@@ -66,9 +66,9 @@ class Table extends Component {
     })
   }
 
-  handleClickRow(row, idx) {
+  handleClickRow(row, idx, ev) {
     if (this.props.onRowClick) {
-      this.props.onRowClick(row, idx)
+      this.props.onRowClick(row, idx, ev)
     }
   }
 
