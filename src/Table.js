@@ -56,7 +56,7 @@ class Table extends Component {
 
   renderRow(obj, idx) {
     return React.Children.map(this.childrenWithProps(obj, idx), (child) => {
-      const onclick = (child.props.attr) ? (() => this.handleClickRow(obj, idx)) : (() => null)
+      const onclick = (child.props.attr) ? ((e) => this.handleClickRow(obj, idx, e)) : (() => null)
       const style = this.props.onRowClick ? {cursor: 'pointer'} : {}
       return (
         <td key={idx} onClick={onclick} style={style}>
@@ -126,5 +126,3 @@ Table.propTypes = {
   errors: PropTypes.array,
   onRowClick: PropTypes.func
 }
-
-export {Table};
