@@ -126,3 +126,5 @@ Table.propTypes = {
   errors: PropTypes.array,
   onRowClick: PropTypes.func
 }
+
+export {Table}
