@@ -58,11 +58,18 @@ class Table extends Component {
     return React.Children.map(this.childrenWithProps(obj, idx), (child) => {
       const onclick = (child.props.attr) ? ((e) => this.handleClickRow(obj, idx, e)) : (() => null)
       const style = this.props.onRowClick ? {cursor: 'pointer'} : {}
-      return (
-        <td key={idx} onClick={onclick} style={style}>
-          {child}
-        </td>
-      )
+      if (this.props.cellContainer) 
+        return (
+          <td key={idx} onClick={onclick} style={style}>
+            {this.props.cellContainer(child)}
+          </td>
+        )
+      else
+        return (
+          <td key={idx} onClick={onclick} style={style}>
+            {child}
+          </td>
+        )
     })
   }
 
@@ -124,7 +131,8 @@ Table.propTypes = {
   edit: PropTypes.bool,
   onChange: PropTypes.func,
   errors: PropTypes.array,
-  onRowClick: PropTypes.func
+  onRowClick: PropTypes.func,
+  cellContainer: PropTypes.any
 }
 
 export {Table}
