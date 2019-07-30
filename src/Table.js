@@ -58,10 +58,10 @@ class Table extends Component {
     return React.Children.map(this.childrenWithProps(obj, idx), (child) => {
       const onclick = (child.props.attr) ? ((e) => this.handleClickRow(obj, idx, e)) : (() => null)
       const style = this.props.onRowClick ? {cursor: 'pointer'} : {}
-      if (this.props.cellContainer) 
+      if (this.props.cellContainer)
         return (
           <td key={idx} onClick={onclick} style={style}>
-            {this.props.cellContainer(child)}
+            {this.props.cellContainer(child, obj)}
           </td>
         )
       else
