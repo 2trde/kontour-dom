@@ -9,8 +9,9 @@ const RenderSelect = ({invalid, onChange, value, options, disabled}) => {
   const validClass = invalid ? 'is-invalid' : ''
   const classNames = ('form-control ' + validClass).trim()
   const val = typeof(value) == 'undefined' || value === null  ? '' : value
+  const style = {...fieldProps.style, display: 'inline-block'}
   return (
-    <select onChange={({target}) => onChange(target.value == '' ? null : target.value)} value={val} className={classNames} disabled={disabled}>
+    <select style={ style }  onChange={({target}) => onChange(target.value == '' ? null : target.value)} value={val} className={classNames} disabled={disabled}>
       {options.map((option) => {
         return <option key={option.key} value={option.key} >{ option.text }</option>
       })}
