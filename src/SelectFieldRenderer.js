@@ -13,7 +13,8 @@ const RenderSelect = ({invalid, onChange, value, options, disabled, fieldProps})
   return (
     <select style={ style }  onChange={({target}) => onChange(target.value == '' ? null : target.value)} value={val} className={classNames} disabled={disabled}>
       {options.map((option) => {
-        return <option key={option.key || ''} value={option.key} >{ option.text }</option>
+        const key = option.key === null ? '' : option.key 
+        return <option key={key} value={key} >{ option.text }</option>
       })}
     </select>
   )
