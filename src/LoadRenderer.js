@@ -22,4 +22,3 @@ setRenderer('CheckField', 'show', RenderBooleanDisplay)
 setRenderer('CheckField', 'edit', RenderCheckboxInput)
 
 setRenderer('Field', 'display', RenderStatic)
-

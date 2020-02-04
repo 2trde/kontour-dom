@@ -1,59 +1,58 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react'
 import {IntField} from 'kontour'
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import {} from './TestSetup'
 
 describe('IntField', () => {
   it('renders a number in display mode', () => {
-    const wrapper = mount(<IntField edit={false} value={123}/>)
+    const wrapper = mount(<IntField edit={false} value={123} />)
     expect(wrapper.find('span').text()).toBe('123')
-  });
+  })
 
   it('renders null in display mode', () => {
-    const wrapper = mount(<IntField edit={false} value={null}/>)
+    const wrapper = mount(<IntField edit={false} value={null} />)
     expect(wrapper.find('span').text()).toBe(' ')
-  });
+  })
 
   it('renders a input field in edit mode', () => {
-    const wrapper = mount(<IntField edit={true} value={123}/>)
+    const wrapper = mount(<IntField edit={true} value={123} />)
     expect(wrapper.find('input').prop('value')).toBe('123')
-  });
+  })
 
   it('renders null in edit mode', () => {
-    const wrapper = mount(<IntField edit={true} value={null}/>)
+    const wrapper = mount(<IntField edit={true} value={null} />)
     expect(wrapper.find('input').prop('value')).toBe('')
-  });
+  })
 
   it('valid change', () => {
-    const mockOnChange = jest.fn();
-    const wrapper = mount(<IntField edit={true} value={123} onChange={mockOnChange}/>)
-    wrapper.find('input').simulate('change', { target: { value: '456' }})
+    const mockOnChange = jest.fn()
+    const wrapper = mount(<IntField edit={true} value={123} onChange={mockOnChange} />)
+    wrapper.find('input').simulate('change', {target: {value: '456'}})
     expect(wrapper.find('input').prop('className')).toBe('form-control')
-    expect(mockOnChange.mock.calls[0]).toEqual([456]);
-  });
+    expect(mockOnChange.mock.calls[0]).toEqual([456])
+  })
 
   it('invalid change', () => {
-    const mockOnChange = jest.fn();
-    const wrapper = mount(<IntField edit={true} value={123} onChange={mockOnChange}/>)
-    wrapper.find('input').simulate('change', { target: { value: '456a' }})
+    const mockOnChange = jest.fn()
+    const wrapper = mount(<IntField edit={true} value={123} onChange={mockOnChange} />)
+    wrapper.find('input').simulate('change', {target: {value: '456a'}})
     expect(wrapper.find('input').prop('className')).toBe('form-control is-invalid')
-    expect(mockOnChange.notCalled);
-  });
+    expect(mockOnChange.notCalled)
+  })
 
   it('change to null', () => {
-    const mockOnChange = jest.fn();
-    const wrapper = mount(<IntField edit={true} value={123} onChange={mockOnChange}/>)
-    wrapper.find('input').simulate('change', { target: { value: '' }})
+    const mockOnChange = jest.fn()
+    const wrapper = mount(<IntField edit={true} value={123} onChange={mockOnChange} />)
+    wrapper.find('input').simulate('change', {target: {value: ''}})
     expect(mockOnChange.mock.calls[0]).toEqual([null])
-  });
+  })
   it('change 100 to 00', () => {
-    const mockOnChange = jest.fn();
-    const wrapper = mount(<IntField edit={true} value={100} onChange={mockOnChange}/>)
-    wrapper.find('input').simulate('change', { target: { value: '00' }})
+    const mockOnChange = jest.fn()
+    const wrapper = mount(<IntField edit={true} value={100} onChange={mockOnChange} />)
+    wrapper.find('input').simulate('change', {target: {value: '00'}})
     expect(mockOnChange.mock.calls[0]).toEqual([0])
     wrapper.setProps({value: 0})
     expect(wrapper.find('input').prop('className')).toBe('form-control')
     expect(wrapper.find('input').prop('value')).toBe('0')
-  });
+  })
 })

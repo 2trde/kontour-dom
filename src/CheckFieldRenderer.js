@@ -1,11 +1,11 @@
 import React from 'react'
-import {setRenderer} from 'kontour'
+import PropTypes from 'prop-types'
 
 const RenderCheckboxInput = ({style, onChange, value}) => {
   const classNames = ''
   style = {...style, display: 'inline-block'}
   return (
-    <input type="checkbox" style={ style } className={classNames} onChange={onChange} checked={value ? value : ''}/>
+    <input type='checkbox' style={style} className={classNames} onChange={onChange} checked={value || ''} />
   )
 }
 
@@ -18,5 +18,14 @@ const RenderBooleanDisplay = ({value}) => {
   )
 }
 
+RenderCheckboxInput.propTypes = {
+  value: PropTypes.bool,
+  onChange: PropTypes.func,
+  style: PropTypes.object
+}
 
-export {RenderCheckboxInput, RenderBooleanDisplay} 
+RenderBooleanDisplay.propTypes = {
+  value: PropTypes.bool
+}
+
+export {RenderCheckboxInput, RenderBooleanDisplay}

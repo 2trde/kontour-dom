@@ -19,19 +19,13 @@ class Table extends Component {
     const newList = this.props.value.slice()
     const newValue = setAttribute(newList[idx], attribute, value)
     newList[idx] = newValue
-    if (this.props.onChange)
-      this.props.onChange(newList)
-    else
-      throw Error('forgot to implement onChange on your table?')
+    if (this.props.onChange) { this.props.onChange(newList) } else { throw Error('forgot to implement onChange on your table?') }
   }
 
   changeRow(idx, newRow) {
     const newList = this.props.value.slice()
     newList[idx] = newRow
-    if (this.props.onChange)
-      this.props.onChange(newList)
-    else
-      throw Error('forgot to implement onChange on your table?')
+    if (this.props.onChange) { this.props.onChange(newList) } else { throw Error('forgot to implement onChange on your table?') }
   }
 
   childrenWithProps(row, idx) {
@@ -56,20 +50,21 @@ class Table extends Component {
 
   renderRow(obj, idx) {
     return React.Children.map(this.childrenWithProps(obj, idx), (child) => {
-      const onclick = (child.props.attr) ? ((e) => this.handleClickRow(obj, idx, e)) : (() => null)
+      const onclick = (child.props.attr) ? (e) => this.handleClickRow(obj, idx, e) : () => null
       const style = this.props.onRowClick ? {cursor: 'pointer'} : {}
-      if (this.props.cellContainer)
+      if (this.props.cellContainer) {
         return (
           <td key={idx} onClick={onclick} style={style}>
             {this.props.cellContainer(child, obj)}
           </td>
         )
-      else
+      } else {
         return (
           <td key={idx} onClick={onclick} style={style}>
             {child}
           </td>
         )
+      }
     })
   }
 
@@ -79,28 +74,21 @@ class Table extends Component {
     }
   }
 
-  handleOnMouseEnter(e, row) {
-  }
-
-  handleOnMouseLeave(e, row) {
-  }
-
-  handleOnMouseMove(e, row) {
-  }
+  handleOnMouseEnter() {}
+  handleOnMouseLeave() {}
+  handleOnMouseMove() {}
 
   handleHeaderClick(attr) {
-    if (this.props.onHeaderClick)
-      this.props.onHeaderClick(attr)
+    if (this.props.onHeaderClick) { this.props.onHeaderClick(attr) }
   }
 
   renderRows() {
-    if (this.props.value == null)
-      return null
+    if (this.props.value == null) { return null }
     return (
       this.props.value.map((row, idx) => {
         return (
           <tr key={row.id || idx} onMouseEnter={(e) => this.handleOnMouseEnter(e, row)} onMouseLeave={(e) => this.handleOnMouseLeave(e, row)}
-                            onMouseMove={(e) => this.handleOnMouseMove(e, row)}>
+            onMouseMove={(e) => this.handleOnMouseMove(e, row)}>
             {this.renderRow(row, idx)}
           </tr>
         )
@@ -108,11 +96,14 @@ class Table extends Component {
     )
   }
 
-  render(children) {
+  render() {
     let rows = this.renderRows()
+    const TableHeader = this.props.renderTableHeader
     return (
-      <table className="table">
-        <this.props.renderTableHeader children={this.visibleChildren()} onHeaderClick={this.props.onHeaderClick}/>
+      <table className='table'>
+        <TableHeader onHeaderClick={this.props.onHeaderClick}>
+          {this.visibleChildren()}
+        </TableHeader>
         <tbody>
           { rows }
         </tbody>
@@ -121,8 +112,13 @@ class Table extends Component {
   }
 }
 
+RenderTableHeader.propTypes = {
+  children: PropTypes.any,
+  onHeaderClick: PropTypes.func
+}
+
 Table.defaultProps = {
-  renderTableHeader: RenderTableHeader 
+  renderTableHeader: RenderTableHeader
 }
 
 Table.propTypes = {
@@ -132,7 +128,9 @@ Table.propTypes = {
   onChange: PropTypes.func,
   errors: PropTypes.array,
   onRowClick: PropTypes.func,
-  cellContainer: PropTypes.any
+  cellContainer: PropTypes.any,
+  children: PropTypes.any,
+  onHeaderClick: PropTypes.func
 }
 
 export {Table}
