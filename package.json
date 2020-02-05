@@ -22,11 +22,11 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
+    "moment": "^2.22.1",
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
-    "moment": "^2.22.1",
-    "react-overlays": "^2.1.1"
+    "react-overlays": "^0.8.3 || ^1.0.0 || ^2.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -48,7 +48,11 @@
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-standard": "^3.1.0",
     "gh-pages": "^1.2.0",
-    "kontour": "^0.2.9",
+    "kontour": "^0.2.10",
+    "moment": "^2.22.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-overlays": "^2.1.1",
     "react-scripts": "^3.3.1",
     "rollup": "^0.64.1",
     "rollup-plugin-babel": "^3.0.7",
