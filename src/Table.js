@@ -77,6 +77,7 @@ class Table extends Component {
   handleOnMouseEnter() {}
   handleOnMouseLeave() {}
   handleOnMouseMove() {}
+  handleTableCkick() {}
 
   handleHeaderClick(attr) {
     if (this.props.onHeaderClick) { this.props.onHeaderClick(attr) }
@@ -96,11 +97,12 @@ class Table extends Component {
     )
   }
 
+
   render() {
     let rows = this.renderRows()
     const TableHeader = this.props.renderTableHeader
     return (
-      <table className='table'>
+      <table className='table' onClick={this.handleTableClick.bind(this)}>
         <TableHeader onHeaderClick={this.props.onHeaderClick}>
           {this.visibleChildren()}
         </TableHeader>
