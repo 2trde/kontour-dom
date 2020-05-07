@@ -77,7 +77,7 @@ class Table extends Component {
   handleOnMouseEnter() {}
   handleOnMouseLeave() {}
   handleOnMouseMove() {}
-  handleTableCkick() {}
+  handleTableClick() {}
 
   handleHeaderClick(attr) {
     if (this.props.onHeaderClick) { this.props.onHeaderClick(attr) }
