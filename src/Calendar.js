@@ -90,7 +90,7 @@ class Calendar extends Component {
 
   daysToDisplay(date) {
     const firstDayMonth = date.clone().date(1)
-    const firstDay = firstDayMonth.clone().subtract(firstDayMonth.isoWeekDay() - 1, 'days')
+    const firstDay = firstDayMonth.clone().subtract(firstDayMonth.isoWeekday() - 1, 'days')
     const days = []
     let day = firstDay
     let finished = false
@@ -100,7 +100,7 @@ class Calendar extends Component {
       days.push(day)
       day = day.clone().add(1, 'd')
       if (this.totalMonths(day) > this.totalMonths(date)) { reachedLastDayOfMonth = true }
-      if (day.isoWeekDay() === 1 && reachedLastDayOfMonth) { finished = true }
+      if (day.isoWeekday() === 1 && reachedLastDayOfMonth) { finished = true }
       i = i + 1
     }
     return days
